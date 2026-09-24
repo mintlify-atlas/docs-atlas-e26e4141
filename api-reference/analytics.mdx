@@ -64,7 +64,7 @@ Every analytics endpoint accepts the following query parameters. Multiple values
 
 Returns the total visit count for the given filters, split into human visits, bot visits, and orphan visits.
 
-```
+```http
 GET /api/v1/analytics/summary
 ```
 
@@ -116,7 +116,7 @@ GET /api/v1/analytics/summary
 
 Returns a list of per-day visit counts over the requested time range. Useful for charting trends over time. Results are ordered chronologically (oldest first).
 
-```
+```http
 GET /api/v1/analytics/timeseries
 ```
 
@@ -164,7 +164,7 @@ Returns an array of `StatsBucket` objects, one per day that had at least one qua
 
 Returns visit counts grouped by a chosen dimension, ordered by total volume descending. Use this endpoint to identify top referrers, platforms, destination URLs, or slugs.
 
-```
+```http
 GET /api/v1/analytics/breakdown
 ```
 

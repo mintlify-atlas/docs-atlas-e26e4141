@@ -1,7 +1,7 @@
 ---
 title: "Rules API: Configure Dynamic Link Routing Conditions"
 sidebarTitle: "Rules"
-description: "Reference for the two rules endpoints — GET to read a link's routing rules and PUT to replace them atomically. Rules enable platform and query-param conditional redirects."
+description: "Reference for the two rules endpoints on a link: GET to read routing rules and PUT to replace them atomically with platform or query-param conditions."
 ---
 
 Rules define conditional routing for a link. Instead of always sending every visitor to the same destination, a link with rules evaluates each rule in order and redirects to the first one whose conditions all match. If no rule matches, the link falls back to its default destination. Rules are managed as an ordered list on a specific link — there is no standalone rules resource. All rules endpoints require a valid API key sent as `Authorization: Bearer <key>` or `X-Api-Key: <key>`.

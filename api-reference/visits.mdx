@@ -1,5 +1,5 @@
 ---
-title: "Visits API: Raw Visit Log for Links and Domains"
+title: "Visits API: Raw Visit Log with Filters and Pagination"
 sidebarTitle: "Visits"
 description: "Page through the raw visit log, filtered by link, domain, date range, bot status, platform, OS, or browser. Individual visit records returned newest-first."
 ---
@@ -16,7 +16,7 @@ The visits endpoint exposes the raw, unprocessed log of every request that arriv
 
 Returns a paginated, newest-first list of visit records matching the supplied filters.
 
-```
+```http
 GET /api/v1/visits
 ```
 
@@ -39,7 +39,7 @@ GET /api/v1/visits
 </ParamField>
 
 <ParamField query="to" type="string (ISO 8601 datetime)">
-  Return only visits that occurred at or before this instant. When a bare date is supplied (e.g. `2024-05-31`), it is interpreted as the end of that calendar day (exclusive upper bound on the next day). Inclusive when a full datetime is provided.
+  Return only visits that occurred at or before this instant. Requires a full ISO 8601 datetime string including the `T` separator (e.g. `2024-05-31T23:59:59Z`). Inclusive.
 </ParamField>
 
 <ParamField query="bot" type="string" default='"any"'>
@@ -54,11 +54,11 @@ GET /api/v1/visits
 </ParamField>
 
 <ParamField query="os" type="string">
-  Filter to a specific OS. Case-insensitive substring match against the stored value (e.g. `windows`, `macos`, `linux`). Open-ended — not a closed enum.
+  Filter to visits from a specific OS (e.g. `windows`, `macos`, `linux`). Exact match; the value is lowercased at the API boundary to match how it is stored. Open vocabulary — not a closed enum.
 </ParamField>
 
 <ParamField query="browser" type="string">
-  Filter to a specific browser. Case-insensitive substring match (e.g. `chrome`, `safari`, `firefox`). Open-ended — not a closed enum.
+  Filter to visits from a specific browser (e.g. `chrome`, `safari`, `firefox`). Exact match; the value is lowercased at the API boundary to match how it is stored. Open vocabulary — not a closed enum.
 </ParamField>
 
 <ParamField query="limit" type="integer" default="50">

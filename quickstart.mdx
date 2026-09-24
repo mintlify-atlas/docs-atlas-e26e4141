@@ -1,7 +1,7 @@
 ---
-title: "Get Started with linq: Your First Short Link"
+title: "Quickstart: Install linq and Create Your First Short Link"
 sidebarTitle: "Quickstart"
-description: "Install linq, connect it to PostgreSQL, configure your environment, and create your first short link in under ten minutes."
+description: "Install linq, connect it to PostgreSQL, configure your environment, and create your first short link. No Redis or extra services needed to get started."
 ---
 
 linq is a self-hosted SaaS platform for URL shortening, dynamic link routing, and link-tree pages — all operated through a REST API and a static Next.js web UI. This guide walks you from a fresh checkout to a running instance with a working short link you can redirect in your browser.
@@ -71,7 +71,7 @@ bun run dev
 
 On an instance that has **no API keys**, linq mints an admin key and prints it once to stdout:
 
-```
+```text
   linq admin API key: linq_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   Store it now; it is not recoverable.
   Create more with: bun run key:create --name <name> --preset <preset>

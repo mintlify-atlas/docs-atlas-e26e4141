@@ -222,7 +222,7 @@ handler runs
 If you are building a UI or integration that mirrors linq's permission model, import `@linq/shared` and use the same `can` helper the Client UI uses. Pass the authenticated key's claims to reconstruct the same ability object without making additional API calls:
 
 ```typescript
-import { can, defineAbility } from "@linq/shared"
+import { can } from "@linq/shared"
 
 // claims come from GET /api/v1/keys/{id} or the stored key object
 const actor = { keyId: "019612ab-...", claims: key.claims }

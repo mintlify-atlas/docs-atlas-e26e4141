@@ -1,5 +1,5 @@
 ---
-title: "API Keys: Authenticating Requests to linq"
+title: "API Keys: Authentication and Key Lifecycle in linq"
 sidebarTitle: "API Keys"
 description: "Learn how to obtain a linq API key, pass it in requests using Bearer or X-Api-Key headers, and manage the full key lifecycle — create, rotate, and revoke."
 ---
@@ -11,7 +11,7 @@ linq uses API keys as the only principal — there are no user accounts, session
 When linq starts against a database with an empty `api_keys` table, it mints one admin key automatically and prints it to stdout exactly once:
 
 ```
-  linq admin API key: linq_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  linq admin API key: linq_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   Store it now; it is not recoverable.
   Create more with: bun run key:create --name <name> --preset <preset>
 ```

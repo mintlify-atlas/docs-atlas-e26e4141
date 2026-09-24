@@ -4,7 +4,7 @@ sidebarTitle: "Links"
 description: "Full reference for the Links resource — list, create, get, update, archive, purge, count, and bulk purge. Links are the core entity in linq."
 ---
 
-Links are the core resource in linq. Each link pairs a slug on a domain with a destination URL, and optionally a set of routing rules, OG metadata, preset query parameters, and an expiry time. A link can be a `redirect` (the common case — a slug that sends visitors to a destination URL) or a `tree` (a hosted profile-style page). All link endpoints require a valid API key sent as `Authorization: Bearer <key>` or `X-Api-Key: <key>`. Roles are ordered `viewer < editor < admin`; each operation below states the minimum it requires.
+Links are the core resource in linq. Each link pairs a slug on a domain with a destination URL, and optionally a set of routing rules, OG metadata, preset query parameters, and an expiry time. All link endpoints require a valid API key sent as `Authorization: Bearer <key>` or `X-Api-Key: <key>`. Roles are ordered `viewer < editor < admin`; each operation below states the minimum it requires.
 
 <Note>
   **Archiving vs. purging.** `DELETE /api/v1/links/{id}` *archives* a link — it stops redirecting but its row, visit history, and slug reservation all remain intact. The only way to permanently destroy a link and release its slug is to purge it via `DELETE /api/v1/links/{id}/purge` (single) or `DELETE /api/v1/links/purge` (bulk). Archiving is reversible with `PATCH { "status": "active" }`; purging is not.

@@ -1,5 +1,5 @@
 ---
-title: "Links and Slugs: How Short URLs Work in linq"
+title: "Links and Slugs: How Short URLs Work in the linq API"
 sidebarTitle: "Links & Slugs"
 description: "Links are linq's core entity. Learn slug generation, redirect vs tree kinds, query forwarding, preset params, expiry, and the archived–purged lifecycle."
 ---
@@ -15,7 +15,7 @@ Every link has a `kind` that controls what happens when a visitor lands on its s
     A `redirect` link sends visitors to a **Destination** URL with an HTTP 302 response. This is the standard short-link use case. A redirect link may carry up to 50 conditional **Rules** (see [Dynamic Links](/concepts/dynamic-links)) to route different visitors to different destinations.
   </Tab>
   <Tab title="tree">
-    A `tree` link serves a **hosted HTML page** instead of a redirect. The page displays a title, description, optional image, and an ordered list of items — each a label pointing to another link on the same domain. There is no `destination` field on a tree link. See [Link Trees](/concepts/link-trees) for details.
+    A `tree` link serves a **hosted HTML page** instead of a redirect. The page displays a title, description, optional image, and an ordered list of items — each a label pointing to another link on the same domain. See [Link Trees](/concepts/link-trees) for details.
   </Tab>
 </Tabs>
 
@@ -78,7 +78,7 @@ The full shape of a link returned by the API:
 </ResponseField>
 
 <ResponseField name="destination" type="string (URI)">
-  The long URL visitors are sent to. Present on `redirect` links; absent on `tree` links.
+  The long URL visitors are sent to when the link resolves.
 </ResponseField>
 
 <ResponseField name="name" type="string | null">
@@ -87,6 +87,10 @@ The full shape of a link returned by the API:
 
 <ResponseField name="description" type="string | null">
   Optional description. Auto-populated from the destination's `<meta name="description">` when metadata fetching is enabled. Up to 500 characters.
+</ResponseField>
+
+<ResponseField name="icon_url" type="string (URI) | null">
+  Favicon or icon URL fetched from the destination page's `<head>` when `LINQ_FETCH_LINK_METADATA` is enabled. `null` if not fetched or not found.
 </ResponseField>
 
 <ResponseField name="tags" type="string[]">

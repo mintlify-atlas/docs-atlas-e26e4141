@@ -1,5 +1,5 @@
 ---
-title: "linq REST API: Overview and Base URLs"
+title: "linq API Reference: Base URL, Pagination, and CORS"
 sidebarTitle: "Overview"
 description: "A guide to the linq REST API base URL, versioning, content types, pagination envelope, CORS policy, and all available resource endpoint groups."
 ---
@@ -135,5 +135,5 @@ The `Host` header selects which domain's catalogue is returned. A `404` is retur
 ## Identity Endpoint
 
 <Note>
-  `GET /api/v1/me` returns the calling key's `id`, `name`, `role`, and expiry. It's a quick way to confirm that your key is valid, identify which role it carries, and verify connectivity before making further calls. Use it as a smoke test when setting up a new integration.
+  `GET /api/v1/me` returns the calling key's `id`, `name`, `claims`, `preset`, `prefix`, and `expires_at`. It is a quick way to confirm that your key is valid, inspect which claims it carries, and verify connectivity before making further calls. Use it as a smoke test when setting up a new integration.
 </Note>

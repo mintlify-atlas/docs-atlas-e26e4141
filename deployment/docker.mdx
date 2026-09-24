@@ -1,5 +1,5 @@
 ---
-title: "Deploy linq with Docker and Docker Compose"
+title: "Deploy linq with Docker Compose: Images and Stacks"
 sidebarTitle: "Docker"
 description: "Run linq from a pre-built image or a local build. Choose between four deployment shapes, eleven Compose stacks, and configure the right env vars for each."
 ---
@@ -79,7 +79,7 @@ Eleven Compose files live in `docker/examples/docker-compose/`. The first eight 
 
     On first boot, linq applies its migrations, seeds the first domain, and — if no API keys exist — prints an admin key to stdout:
 
-    ```
+    ```text
     linq admin API key: linq_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     Store it now; it is not recoverable.
     ```
@@ -111,7 +111,7 @@ The `linq` container reads its configuration from environment variables at runti
 <ParamField body="DATABASE_URL" type="string" required>
   PostgreSQL connection string. Bundled-Postgres stacks override this from `POSTGRES_*` values; external stacks read it directly from `.env`.
 
-  ```
+  ```dotenv
   DATABASE_URL=postgres://linq:linq@db:5432/linq
   ```
 </ParamField>

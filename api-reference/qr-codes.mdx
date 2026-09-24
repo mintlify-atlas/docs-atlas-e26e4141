@@ -36,7 +36,7 @@ linq generates QR codes that are permanently bound to a link's short URL. Rather
 
 Returns a paginated list of QR codes, optionally scoped to a single link. Results are ordered newest-first.
 
-```
+```http
 GET /api/v1/qr-codes
 ```
 
@@ -98,7 +98,7 @@ curl https://your-linq-host/api/v1/qr-codes?link_id=018f2c3e-1234-7abc-8def-0000
 
 Creates a new QR code attached to an existing link. The link must be active — QR codes cannot be attached to archived links.
 
-```
+```http
 POST /api/v1/qr-codes
 ```
 
@@ -150,7 +150,7 @@ curl -X POST https://your-linq-host/api/v1/qr-codes \
 
 Retrieves a single QR code by its ID, including the parent link's name, status, slug, and resolved short URL.
 
-```
+```http
 GET /api/v1/qr-codes/{id}
 ```
 
@@ -171,7 +171,7 @@ curl https://your-linq-host/api/v1/qr-codes/018f2c3e-0000-7000-8000-000000000002
 
 Updates the visual style fields of a QR code. The `link_id` field is immutable and cannot be changed — re-pointing a QR code to a different link would invalidate every printed copy.
 
-```
+```http
 PATCH /api/v1/qr-codes/{id}
 ```
 
@@ -214,7 +214,7 @@ curl -X PATCH https://your-linq-host/api/v1/qr-codes/018f2c3e-0000-7000-8000-000
 
 Permanently deletes a QR code record. The parent link and all its redirects are unaffected. This operation is irreversible.
 
-```
+```http
 DELETE /api/v1/qr-codes/{id}
 ```
 

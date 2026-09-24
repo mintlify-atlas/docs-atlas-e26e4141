@@ -1,5 +1,5 @@
 ---
-title: "Keys API: Create and Manage API Keys"
+title: "Keys API: Manage Authentication Keys and Permissions"
 sidebarTitle: "Keys"
 description: "Manage API keys that authenticate all linq requests. Keys carry claims with built-in viewer, editor, and admin presets, or a fully custom claim list."
 ---
@@ -72,7 +72,7 @@ When creating or updating a key, supply exactly one of:
 
 Returns a paginated list of all API keys. The raw key secret is never included. The response includes full metadata for callers with the `create:Key` claim (admin); other callers receive a summary (id, name, claims, preset only).
 
-```
+```http
 GET /api/v1/keys
 ```
 
@@ -121,7 +121,7 @@ curl https://your-linq-host/api/v1/keys \
 
 Creates a new API key. Returns the full key object including the raw `secret` — this value is shown exactly once and cannot be retrieved later.
 
-```
+```http
 POST /api/v1/keys
 ```
 
@@ -207,7 +207,7 @@ Requires the `create:Key` claim (admin preset).
 
 Returns the metadata for a single API key by its ID. The raw secret is never included.
 
-```
+```http
 GET /api/v1/keys/{id}
 ```
 
@@ -230,7 +230,7 @@ curl https://your-linq-host/api/v1/keys/018f2c3e-bbbb-7000-8000-000000000002 \
 
 Updates the name, permission preset/claims, or expiry of an existing key. All fields are optional. Provide at most one of `preset` or `claims`.
 
-```
+```http
 PATCH /api/v1/keys/{id}
 ```
 
@@ -273,7 +273,7 @@ curl -X PATCH https://your-linq-host/api/v1/keys/018f2c3e-bbbb-7000-8000-0000000
 
 Permanently deletes an API key. Any requests using the revoked key will immediately start receiving `401 Unauthorized`. This operation is irreversible. A key cannot revoke itself.
 
-```
+```http
 DELETE /api/v1/keys/{id}
 ```
 
@@ -296,7 +296,7 @@ curl -X DELETE https://your-linq-host/api/v1/keys/018f2c3e-bbbb-7000-8000-000000
 
 Returns the full metadata for the currently authenticated key — the one whose secret is in the `x-api-key` header. Useful for confirming that authentication is working and for inspecting the calling key's own claims and preset.
 
-```
+```http
 GET /api/v1/me
 ```
 
@@ -365,5 +365,5 @@ curl https://your-linq-host/api/v1/me \
 ---
 
 <Note>
-  **Bootstrap guard:** if all keys are revoked and the key table is empty, the next server restart automatically mints a new admin key and prints its secret to the server's standard output. This prevents a linq instance from becoming permanently inaccessible. You can also run `bun run key:create` directly on the server to create a key without a restart.
+  **Bootstrap guard:** if all keys are revoked and the key table is empty, the next server restart automatically mints a new admin key and prints its secret to the server's standard output. This prevents a linq instance from becoming permanently inaccessible. You can also run `bun run key:create --name <name> --preset <preset> [--expires <ISO date>]` directly on the server to create a key without a restart.
 </Note>

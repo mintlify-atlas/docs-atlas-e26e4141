@@ -1,5 +1,5 @@
 ---
-title: "Configuring linq: Environment Variables Reference"
+title: "Configuring linq: All Environment Variables Reference"
 sidebarTitle: "Configuration"
 description: "A complete reference for all LINQ_* environment variables — their types, defaults, and when to set them for local development and production deployments."
 ---
@@ -35,6 +35,22 @@ If the connection string contains URL-reserved characters in the password (such 
 | **Example** | `linq` |
 
 The PostgreSQL schema linq creates and owns. Leave unset to use the default `public` schema. Set this when linq shares a database with another application so their tables do not collide. linq creates the schema automatically if it does not already exist.
+
+</Accordion>
+
+<Accordion title="POSTGRES_USER / POSTGRES_PASSWORD / POSTGRES_DB" icon="user">
+
+| | |
+|---|---|
+| **Type** | String |
+| **Default** | `linq` / `linq` / `linq` |
+| **Scope** | Docker Compose (bundled-Postgres examples only) |
+
+These variables are read by the bundled PostgreSQL service in the Docker Compose examples that include their own Postgres container. They are **not** read by linq itself — linq only reads `DATABASE_URL`. The Compose file constructs `DATABASE_URL` from them at container startup.
+
+<Warning>
+Replace the default `POSTGRES_PASSWORD` value before deploying. If the password contains URL-reserved characters (such as `@`, `#`, or `%`), percent-encode those same characters in `DATABASE_URL`.
+</Warning>
 
 </Accordion>
 
